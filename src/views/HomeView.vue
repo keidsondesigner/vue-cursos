@@ -17,8 +17,8 @@
           <h2>Avaliação</h2>
           <ul>
             <li v-for="avaliacao in data.avaliacoes" :key="avaliacao.nome">
-              <p>{{ avaliacao.nome }}</p>
-              <p>{{ avaliacao.descricao }}</p>
+              <p><b>{{ avaliacao.nome }}</b></p>
+              <p>"{{ avaliacao.descricao }}"</p>
             </li>
           </ul>
         </div>

@@ -1,12 +1,15 @@
 <template>
   <div>
     <sapn v-if="loading">
-      Carregando...
       <LoadingComponent />
+      Carregando...
     </sapn>
     <div v-else>
       <h1>{{ data.titulo }}</h1>
       <p>{{ data.descricao }}</p>
+      <router-link class="btn-cursos" tag="button" to="/">
+          {{ '< ' }}Home
+        </router-link>
       <ul>
         <li  v-for="item in data.cursos" :key="item.id">
           <h2>
@@ -34,5 +37,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.btn-cursos {
+  display: flex;
+  border: none;
+  background: #4b8;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 2px rgba(0, 0, 0, 0.1);
+  padding: 15px 40px;
+  font-size: 1rem;
+  margin-bottom: 40px;
+  font-weight: 600;
+  font-family: "Avenir", Arial, Helvetica, sans-serif;
+}
 
 </style>
