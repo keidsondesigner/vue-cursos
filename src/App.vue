@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <HeaderComponent />
-    <router-view></router-view>
+    <router-view class="container"></router-view>
   </div>
 </template>
 
@@ -19,6 +19,15 @@ export default {
 <style lang="scss">
 body {
   margin: 0;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+h1, h2, h3, h4, h5, h6, p, a {
+  text-align: start;
 }
 
 ul {
@@ -37,11 +46,9 @@ a.router-link-exact-active {
   color: #4b8;
 }
 
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
 }
 </style>
