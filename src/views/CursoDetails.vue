@@ -16,11 +16,15 @@
         <h2>Aulas</h2>
         <ul class="item-curso">
           <li v-for="item in  data.aulas" :key="item.id">
-            {{ item.nome }}
+            <router-link :to="{name: 'aula', params: { aula: item.id }}">
+              {{ item.nome }}
+            </router-link>
           </li>
         </ul>
       </div>
-      <span></span>
+      <span>
+        <router-view></router-view>
+      </span>
     </div>
   </div>
 </template>
@@ -41,7 +45,7 @@ export default {
 .container-item {
   display: grid;
   grid-template-columns: 1fr minmax(200px, 400px);
-  align-items: center;
+  // align-items: center;
   gap: 20px;
 }
 
@@ -56,7 +60,7 @@ export default {
     background: white;
     border-radius: 4px;
     padding: 20px;
-    width: 100%;
+    width: 90%;
     text-align: start;
   }
 }

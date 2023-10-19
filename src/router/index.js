@@ -1,7 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+
 import HomeView from '../views/HomeView.vue';
 import CursoDetails from '../views/CursoDetails.vue';
+import AulaDetails from '../views/AulaDetails.vue';
 
 Vue.use(VueRouter);
 
@@ -24,6 +26,14 @@ const routes = [
     name: 'curso',
     props: true,
     component: CursoDetails,
+    children: [
+      {
+        path: ':aula',
+        name: 'aula',
+        props: true,
+        component: AulaDetails,
+      },
+    ],
   },
   {
     path: '/contatos',
