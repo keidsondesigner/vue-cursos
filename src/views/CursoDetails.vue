@@ -1,29 +1,30 @@
 <template>
-  <div class="home">
+  <div>
     <sapn v-if="loading">
       Carregando...
       <LoadingComponent />
     </sapn>
     <div v-else class="container-item">
       <div class="item-primary">
-        <h1>Hellow Home</h1>
+        <!-- <p>{{ id }}</p>
+        <span>{{ data }}</span> -->
+        <h1>{{ data.nome }}</h1>
         <p>{{ data.descricao }}</p>
-        <router-link
-          class="btn-cursos"
-          tag="button" to="/cursos">
-          Cursos
+        <router-link class="btn-cursos" tag="button" to="/cursos">
+          {{ '< ' }}Voltar
         </router-link>
-        <div>
-          <h2>Avaliação</h2>
-          <ul>
-            <li v-for="avaliacao in data.avaliacoes" :key="avaliacao.nome">
-              <p><b>{{ avaliacao.nome }}</b></p>
-              <p>"{{ avaliacao.descricao }}"</p>
-            </li>
-          </ul>
-        </div>
+        <h2>Aulas</h2>
+        <ul class="item-curso">
+          <li v-for="item in  data.aulas" :key="item.id">
+            <router-link :to="{name: 'aula', params: { aula: item.id }}">
+              {{ item.nome }}
+            </router-link>
+          </li>
+        </ul>
       </div>
-      <img src="https://www.functiondev.com.br/assets/img/foto-keidson-400.png" alt="">
+      <span>
+        <router-view></router-view>
+      </span>
     </div>
   </div>
 </template>
@@ -32,11 +33,10 @@
 import fetchData from '@/mixins/fetchData';
 
 export default {
-  name: 'HomeView',
-  components: {},
+  props: ['id'],
   mixins: [fetchData],
   created() {
-    this.getData('/home');
+    this.getData(`/curso/${this.id}`);
   },
 };
 </script>
@@ -45,8 +45,24 @@ export default {
 .container-item {
   display: grid;
   grid-template-columns: 1fr minmax(200px, 400px);
-  align-items: center;
+  // align-items: center;
   gap: 20px;
+}
+
+.item-curso {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+
+  li {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: white;
+    border-radius: 4px;
+    padding: 20px;
+    width: 90%;
+    text-align: start;
+  }
 }
 
 .btn-cursos {
@@ -64,20 +80,9 @@ export default {
   font-family: "Avenir", Arial, Helvetica, sans-serif;
 }
 
-img {
-  width: 350px;
-  margin: 0 auto;
-}
-
 @media screen and (max-width: 780px) {
   .container-item {
     display: block;
-    .item-primary {
-      margin-bottom: 40px;
-    }
-    img {
-    width: 250px;
-    }
   }
 }
 </style>
